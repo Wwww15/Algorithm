@@ -1,4 +1,4 @@
-package sparsearray;
+package queue;
 
 import java.util.Scanner;
 
