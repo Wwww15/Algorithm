@@ -2,8 +2,8 @@ package sort;
 
 import java.util.Arrays;
 
+//排序算法：快速排序
 public class QuickSort {
-
 
     public static void main(String[] args) {
         int sortArr[] = {199,0,-99,-100,1,-99,-500,9999,1231,5,1,-99};
@@ -18,7 +18,6 @@ public class QuickSort {
         //2.r从右往左遍历
         //获取中间值
         int pivot = arr[(left+right)/2];
-        System.out.println("中间数："+pivot);
         int temp = 0;
         while (l<r) {
             //获取左边的大于pivot的值
@@ -33,24 +32,42 @@ public class QuickSort {
             if(l>=r) {
                 break;
             }
-            System.out.println("交换前的数组："+Arrays.toString(arr));
+
+            //找到了两边需要换当前的值
             temp = arr[l];
             arr[l] =  arr[r];
             arr[r] = temp;
-            System.out.println("交换后的数组："+Arrays.toString(arr));
-            System.out.println("当前的l："+l);
-            System.out.println("当前的r："+r);
 
+            //避免等于pivot的情况下死循环
             if(arr[l] == pivot)
             {
+                //避免两个数同时移位导致少交换
                 r--;
             }
 
+            //避免等于pivot的情况下死循环
             if(arr[r] == pivot)
             {
+                //避免两个数同时移位导致少交换
                 l++;
             }
 
+        }
+
+        //防止到最后r = 1 = 某个值时候造成死循环
+        if(r == l) {
+            r--;
+            l++;
+        }
+
+        //向左继续排序
+        if(left< r) {
+            quickSort(arr,left,r);
+        }
+
+        //向右排序
+        if(right>l) {
+            quickSort(arr,l,right);
         }
     }
 }
