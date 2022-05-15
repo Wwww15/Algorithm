@@ -12,6 +12,7 @@ public class QuickSort {
     }
 
     public static void quickSort(int[] arr,int left,int right) {
+        //定义两个变量用于表示当前的左起点和右起点
         int l = left;
         int r = right;
         //1.l从左往右遍历
@@ -54,7 +55,7 @@ public class QuickSort {
 
         }
 
-        //防止到最后r = 1 = 某个值时候造成死循环
+        //防止到最后r = 1 = 某个值的时候造成死循环
         if(r == l) {
             r--;
             l++;
