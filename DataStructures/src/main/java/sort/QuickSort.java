@@ -3,6 +3,9 @@ package sort;
 import java.util.Arrays;
 
 //排序算法：快速排序
+//1.找准一个基准数，并对数组进行遍历（这里选择中间index的值）
+//2.从左往右和从右往左分别遍历，等到双方都取到值后，交换（注意等于中间值的情况）
+//3.利用递归再分别将左边和右边进行排序处理，方式同上，直到left>r,right>l
 public class QuickSort {
 
     public static void main(String[] args) {

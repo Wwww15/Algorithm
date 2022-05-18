@@ -3,8 +3,10 @@ package sort;
 import java.util.Arrays;
 
 //排序算法：归并排序
-//分而治之
-//利用递归的方式，将数组分段，然后再对比排序
+//总结：分而治之
+//1.利用递归的方式，将数组分段
+//2.在回溯中，实现当前数组的合并（通过对比当前的中间值，然后判断当前的两边是否有剩余数），并用一个临时数组存储当前合并的排序
+//3.完成后，需要将临时数组重新拷贝到原数组
 public class MergeSort {
 
     public static void main(String[] args) {
