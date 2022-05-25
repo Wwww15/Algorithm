@@ -15,7 +15,6 @@ public class ArrBinaryTreeDemo {
         int arr[] = new int[]{1,2,3,4,5,6,7};
         ArrBinaryTree arrBinaryTree = new ArrBinaryTree(arr);
         arrBinaryTree.preOrder(0);
-
     }
 }
 
