@@ -9,6 +9,26 @@ package tree;
  */
 public class ThreadedBinaryTreeDemo {
 
+    public static void main(String[] args) {
+        TreeNode node1 = new TreeNode(1);
+        TreeNode node3 = new TreeNode(3);
+        TreeNode node6 = new TreeNode(6);
+        TreeNode node8 = new TreeNode(8);
+        TreeNode node10 = new TreeNode(10);
+        TreeNode node14 = new TreeNode(14);
+
+        node1.setLeft(node3);
+        node1.setRight(node6);
+        node3.setLeft(node8);
+        node3.setRight(node10);
+        node6.setLeft(node14);
+
+        ThreadedBinaryTree binaryTree = new ThreadedBinaryTree(node1);
+        //线索化当前的树
+        binaryTree.threadedTree();
+        //查看当前线索化后的树
+        binaryTree.threadedList();
+    }
 
 }
 
@@ -20,6 +40,8 @@ class ThreadedBinaryTree {
 
     private TreeNode root;
 
+    private TreeNode pre;
+
     public ThreadedBinaryTree(TreeNode root) {
         this.root = root;
     }
@@ -30,6 +52,57 @@ class ThreadedBinaryTree {
 
     public void setRoot(TreeNode root) {
         this.root = root;
+    }
+
+    public void threadedTree() {
+        threadedTree(root);
+    }
+
+    /**
+     * 线索化当前的树(中序遍历)
+     * @param node
+     */
+    public void threadedTree(TreeNode node) {
+        if(node == null) {
+            return;
+        }
+        //线索化左子树
+        threadedTree(node.getLeft());
+
+        //线索化当前的结点
+        if(node.getLeft() == null ) {
+            node.setLeft(pre);
+            node.setLeftType(1);
+        }
+        if(pre != null && pre.getRight() == null) {
+            pre.setRight(node);
+            pre.setRightType(1);
+        }
+        //处理完当前结点转化
+        pre = node;
+        //线索化右子树
+        threadedTree(node.getRight());
+    }
+
+    /**
+     * 遍历当前结点（中序遍历）
+     */
+    public void threadedList() {
+        TreeNode node = root;
+        while (node != null) {
+            //找到当前遍历开始前的根节点，也就是从左开始遍历
+            while(node.getLeftType() == 0) {
+                node =  node.getLeft();
+            }
+            //输出当前结点，中间结点
+            System.out.printf(node.getId()+"\t");
+            //后序结点(防止死循环)
+            while (node.getRightType() == 1) {
+                node = node.getRight();
+                System.out.printf(node.getId()+"\t");
+            }
+            node = node.getRight();
+        }
     }
 }
 
@@ -44,6 +117,15 @@ class TreeNode {
     private TreeNode left;
 
     private TreeNode right;
+
+    /**
+     * 用于区分当前左结点的类型,0正常结点,1线索结点
+     */
+    private int leftType;
+    /**
+     * 用于区分当前右结点的类型,0正常结点,1线索结点
+     */
+    private int rightType;
 
     public TreeNode(int id) {
         this.id = id;
@@ -71,5 +153,21 @@ class TreeNode {
 
     public void setRight(TreeNode right) {
         this.right = right;
+    }
+
+    public int getLeftType() {
+        return leftType;
+    }
+
+    public void setLeftType(int leftType) {
+        this.leftType = leftType;
+    }
+
+    public int getRightType() {
+        return rightType;
+    }
+
+    public void setRightType(int rightType) {
+        this.rightType = rightType;
     }
 }
