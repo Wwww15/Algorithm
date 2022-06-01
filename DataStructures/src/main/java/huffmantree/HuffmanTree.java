@@ -1,9 +1,6 @@
 package huffmantree;
 
-import utils.ArrayRandomUtils;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 
 /**
