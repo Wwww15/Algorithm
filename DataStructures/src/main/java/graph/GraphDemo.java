@@ -2,6 +2,7 @@ package graph;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -42,7 +43,10 @@ public class GraphDemo {
         graph.showGraph();
 
         //深度优先遍历
-        graph.deptFirstSearch();
+//        graph.deptFirstSearch();
+
+        //广度优先遍历
+        graph.broadFirstSearch();
     }
 
 }
@@ -120,14 +124,17 @@ class Graph {
      *     b.已被访问，将遍历的邻接顶点置为当前顶点的下一个邻接顶点
      *  2）当前邻接顶点不存在，直接第4步
      * 4.当前顶点遍历完后，继续深度遍历下一个顶点
+     *
+     * 总结：从一个结点开始遍历，走完一个分支后，再走另一个分支
      */
     public void deptFirstSearch() {
         visit = new boolean[vertexCount()];
-        for (int i = 0; i < vertexCount(); i++) {
-            if(!visit[i]) {
-                doDeptFirstSearch(i);
-            }
-        }
+        //这里是否需要遍历，有待商榷 TODO
+//        for (int i = 0; i < vertexCount(); i++) {
+//            if(!visit[i]) {
+                doDeptFirstSearch(0);
+//            }
+//        }
     }
 
     /**
@@ -150,6 +157,50 @@ class Graph {
             }
             //已经被访问，继续遍历当前结点的下一个邻接结点
             neighborIndex = getNextNeighborNode(rowIndex,neighborIndex+1);
+        }
+    }
+
+    /**
+     * 广度优先遍历
+     * 总结：按照层级一层层的往下遍历
+     *
+     */
+    public void broadFirstSearch() {
+        visit = new boolean[vertexCount()];
+        doBroadFirstSearch(0);
+    }
+
+    /**
+     * 广度优先遍历真正的实现
+     */
+    public void doBroadFirstSearch(int rowIndex) {
+        //存储当前遍历到的顶点
+        LinkedList<Integer> temp = new LinkedList<Integer>();
+        //添加初始化结点到temp
+        temp.addLast(rowIndex);
+        //当前的temp还有未往下遍历的结点
+        //打印当前结点
+        System.out.print(vertexVal(rowIndex)+"->");
+        //当前结点置为已访问
+        visit[rowIndex] = true;
+        while(!temp.isEmpty()) {
+            int curIndex = temp.removeFirst();
+            //广度遍历，获取当前结点的下一个邻接结点
+            int nextNode = getNextNeighborNode(curIndex, 0);
+            //下一个邻接结点存在
+            while (nextNode != -1) {
+                //未被访问
+                if(!visit[nextNode]) {
+                    //打印当前结点
+                    System.out.print(vertexVal(nextNode)+"->");
+                    //当前结点置为已访问
+                    visit[nextNode] = true;
+                    //将当前结点添加到temp
+                    temp.addLast(nextNode);
+                }
+                //已被访问
+                nextNode = getNextNeighborNode(curIndex,nextNode+1);
+            }
         }
     }
 
