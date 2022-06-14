@@ -7,7 +7,7 @@ public class ViolenceMatchDemo {
 
     public static void main(String[] args) {
         String srcStr = "硅硅谷 尚硅谷你尚硅 尚硅谷你尚硅谷你尚硅你好";
-        String searchStr = "尚硅谷你尚硅你啊";
+        String searchStr = "硅";
         int searchResult = violenceMatch(srcStr,searchStr);
         System.out.println(searchResult);
     }
@@ -16,7 +16,7 @@ public class ViolenceMatchDemo {
      * 暴力匹配字符串
      * 1.下标i定义原字符串srcStr下标
      * 2.下标j定义查找的字符串searchStr下标
-     * 3.当且仅当j = searchStr-1时，返回1,否则返回-1
+     * 3.当且仅当j = searchStr.length()时，返回对应下标,否则返回-1
      * @return
      */
     public static int violenceMatch(String srcStr,String searchStr) {

@@ -14,7 +14,7 @@ public class KnapsackDemo {
     public static void main(String[] args) {
         int v[] = {1000,3000,2500,2000,3500};
         int w[] = {1,4,3,2,5};
-        int maxW = 7;
+        int maxW = 6;
         knapsack(w,v,maxW);
     }
 
