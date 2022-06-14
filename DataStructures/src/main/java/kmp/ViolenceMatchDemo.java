@@ -35,7 +35,7 @@ public class ViolenceMatchDemo {
                 j = 0;
             }
         }
-        //找到
+        //找到,j需要等于当前查找的字符串长度，因为每次找到后，j++了
         if(j == searchStr.length()) {
             return i-j;
         }
