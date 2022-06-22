@@ -3,14 +3,14 @@ package queue;
 import java.util.Scanner;
 
 /**
- * 银行排队（队列）
+ * 数据结构：银行排队（队列）
  * 特点：
  *  1.先进先出
  *  2.可以用数组或者是链表实现
  *  3.队尾加数据
  *  4.队首取数据
  */
-public class Queue {
+public class QueueDemo {
 
     public static void main(String[] args) {
         ArrayQueue arrayQueue = new ArrayQueue(3);
@@ -19,6 +19,22 @@ public class Queue {
         while(loop) {
             switch (scanner.next()) {
                 case "A":
+                    System.out.println("请输入一个数：");
+                    int addNum = scanner.nextInt();
+                    arrayQueue.addQueue(addNum);
+                    break;
+                case "S":
+                    arrayQueue.showQueue();
+                    break;
+                case "G":
+                    int getNum = arrayQueue.getQueue();
+                    System.out.printf("当前获取的数是：%d",getNum);
+                    break;
+                case "EXIT":
+                    scanner.close();
+                    loop = false;
+                    break;
+                default:
                     break;
             }
         }
@@ -27,6 +43,9 @@ public class Queue {
 
 /**
  * 数组模拟队列（不可复用）
+ * 1.注意当前队列的rear和front的初始值
+ * 2.rear初始值为0,则队列满的时候,rear的当前值不对
+ *
  */
 class  ArrayQueue {
 
@@ -57,7 +76,7 @@ class  ArrayQueue {
      * @return
      */
     public boolean isFull() {
-        return rear == this.maxSize-1;
+        return rear == this.maxSize;
     }
 
     /**
@@ -65,7 +84,7 @@ class  ArrayQueue {
      */
     public void addQueue(int number) {
         if(isFull()) {
-            System.out.println("当前队列已满！");
+            throw new RuntimeException("当前队列已满！");
         }
         arr[rear] = number;
         rear++;
@@ -109,14 +128,8 @@ class  ArrayQueue {
             throw new RuntimeException("当前队列为空！");
         }
         for (int i = 0; i < arr.length; i++) {
-            System.out.printf("arr[%d]=%d",i,arr[i]);
+            System.out.printf("arr[%d]=%d\n",i,arr[i]);
         }
     }
 
 }
-//数组模拟队列
-//1.队首
-//2.队尾
-//3.数组长度
-//4.取数据
-//5.放数据
