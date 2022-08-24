@@ -13,7 +13,7 @@ public class CircleQueueDemo {
 
     public static void main(String[] args) {
         //初始化循环队列，虽然大小为3，但是有效数据最大为2
-        ArrayCircleQueue arrayCircleQueue = new ArrayCircleQueue(3);
+        ArrayCircleQueue arrayCircleQueue = new ArrayCircleQueue(4);
         Scanner scanner = new Scanner(System.in);
         boolean loop = true;
         while(loop) {
@@ -130,7 +130,7 @@ class ArrayCircleQueue {
             throw new RuntimeException("当前队列为空！");
         }
         for (int i = front; i < front+size(); i++) {
-            System.out.printf("arr[%d]=%d\n",i,arr[i]);
+            System.out.printf("arr[%d]=%d\n",i%maxSize,arr[i%maxSize]);
         }
     }
 

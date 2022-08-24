@@ -32,6 +32,7 @@ public class ViolenceMatchDemo {
             }else { //如果没有匹配的字符
                 //这里需要回溯，回溯到初始匹配上的index+1
                 i = i-(j-1);
+                //查找下标置为0，为了重新查找
                 j = 0;
             }
         }

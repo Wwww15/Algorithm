@@ -127,7 +127,7 @@ class  ArrayQueue {
         if(isEmpty()) {
             throw new RuntimeException("当前队列为空！");
         }
-        for (int i = 0; i < arr.length; i++) {
+        for (int i = front; i < arr.length; i++) {
             System.out.printf("arr[%d]=%d\n",i,arr[i]);
         }
     }
