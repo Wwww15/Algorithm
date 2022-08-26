@@ -13,13 +13,18 @@ import java.util.Arrays;
 public class RadixSort {
 
     public static void main(String[] args) {
-        int arr[] = { 53, 3, 542, 748, 14, 214};
+        int arr[] = { 53, 3, 542, 748, 14, 214,314};
         radixSort(arr);
         System.out.println(Arrays.toString(arr));
     }
 
     /**
      * 基数排序
+     * 1.主要分为4步
+     *  1）获取到当前的最大数，然后length得到位数
+     *  2）声明两个数组，一个二维数组用来当做Bucket存放数据，一个一维数组用来存放对应Bucket存放的有效个数
+     *  3）根据位数和数据的个数两层循环遍历数据，然后计算对应的数字余数，按照余数存放在对应的bucket中
+     *  4）最后遍历bucket，从小到大获取数字，放入到原数组
      */
     public static void radixSort(int[] arr) {
         //获取当前的最大数

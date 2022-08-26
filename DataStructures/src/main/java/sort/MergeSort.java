@@ -1,5 +1,8 @@
 package sort;
 
+import utils.ArrayRandomUtils;
+import utils.DateUtils;
+
 import java.util.Arrays;
 
 /**
@@ -12,10 +15,14 @@ import java.util.Arrays;
 public class MergeSort {
 
     public static void main(String[] args) {
-        int sortArr[] = {8,4,5,7,1,3,6,2};
-        int temp[] = new int[sortArr.length];
-        mergeSort(sortArr,0,sortArr.length-1,temp);
-        System.out.println(Arrays.toString(sortArr));
+        int arr[] = ArrayRandomUtils.random(100000000);
+//        int arr[] = {8,4,5,7,1,3,6,2};
+        int temp[] = new int[arr.length];
+        String start = DateUtils.now();
+        System.out.println(start);
+        mergeSort(arr,0,arr.length-1,temp);
+        String end = DateUtils.now();
+        System.out.println(end);
     }
 
     /**
