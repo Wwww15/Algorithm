@@ -295,6 +295,7 @@ public class HuffmanCode {
      * @param flag 是否是最后的标识
      * @return
      */
+    // TODO 这里补位问题待修复，如果最后一位8位bit不满8位为00001,转换成byte为1，这里实际需要补位，并且补位长度不是全部补，此外，最后一位为负数，这里不截取也会出问题
     public static String byteToBitString(boolean flag, byte b) {
         int temp = b;
         //正数需要在高位补零，方便后面统一截取

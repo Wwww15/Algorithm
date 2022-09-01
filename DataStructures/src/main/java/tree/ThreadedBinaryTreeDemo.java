@@ -38,8 +38,13 @@ public class ThreadedBinaryTreeDemo {
  */
 class ThreadedBinaryTree {
 
+    /**
+     * 根节点
+     */
     private TreeNode root;
-
+    /**
+     * 为了实现线索化，需要记录前驱结点
+     */
     private TreeNode pre;
 
     public ThreadedBinaryTree(TreeNode root) {
@@ -54,12 +59,16 @@ class ThreadedBinaryTree {
         this.root = root;
     }
 
+    /**
+     * 线索化二叉树
+     */
     public void threadedTree() {
         threadedTree(root);
     }
 
     /**
      * 线索化当前的树(中序遍历)
+     * 1.中序遍历就是先遍历左结点，再遍历父节点，再遍历右结点
      * @param node
      */
     public void threadedTree(TreeNode node) {
@@ -71,14 +80,19 @@ class ThreadedBinaryTree {
 
         //线索化当前的结点
         if(node.getLeft() == null ) {
+            //设置前驱结点
             node.setLeft(pre);
+            //设置前驱结点的类型,0为正常结点，1为线索结点
             node.setLeftType(1);
         }
+        //判断前驱结点的右结点
         if(pre != null && pre.getRight() == null) {
+            //设置前驱结点的后继结点
             pre.setRight(node);
+            //设置后继结点的类型,0为正常结点，1为线索结点
             pre.setRightType(1);
         }
-        //处理完当前结点转化
+        //处理完当前结点转化，方便后继结点使用
         pre = node;
         //线索化右子树
         threadedTree(node.getRight());
@@ -86,6 +100,7 @@ class ThreadedBinaryTree {
 
     /**
      * 遍历当前结点（中序遍历）
+     * 1.最好Debug看看
      */
     public void threadedList() {
         TreeNode node = root;

@@ -3,6 +3,8 @@ package tree;
 import utils.ArrayRandomUtils;
 import utils.DateUtils;
 
+import java.util.Arrays;
+
 /**
  * 排序算法：堆排序
  * 1.堆排序特点
@@ -14,23 +16,26 @@ import utils.DateUtils;
 public class HeapSort {
 
     public static void main(String[] args) {
-        int[] arr = ArrayRandomUtils.random(8000000);
-        System.out.println(DateUtils.now());
+//        int[] arr = ArrayRandomUtils.random(8000000);
+        int[] arr = {-1,99,0,91,-1,-999,189,1,999};
+//        System.out.println(DateUtils.now());
         heapSort(arr);
-        System.out.println(DateUtils.now());
+//        System.out.println(DateUtils.now());
+        System.out.println(Arrays.toString(arr));
     }
 
     /**
      * 构建当前的大顶堆或者小顶堆
      * 1.首先将当前的数组构建成大顶堆或者小顶堆，构建规则为从左到右，从下往上
-     * 2.然后将首结点和尾结点的值进行调换，使最大值或者最小值沉到底部
+     * 2.通过遍历次数的循环，首先将大顶堆交换一次，将首结点和尾结点的值进行调换，使最大值或者最小值沉到底部
      * 3.重新根据当前的建堆规则构建堆排序
      * 4.如此反复操作数组实现排序+交换的动作，最终完成数组的整个排序
      * @param arr 当前需要排序的数组（整个数组）
      */
     public static void heapSort(int arr[]) {
+        //定义临时变量用来存储尾部结点的值
         int temp = 0;
-        //构建大顶堆，从最左的非叶子结点开始构建，从下往上
+        //构建大顶堆，从最左的非叶子结点开始构建，从下往上，后面构建就只需要交换少数的值
         for (int i = arr.length/2-1;i>=0;i--) {
             adjustHeap(arr,i,arr.length);
         }

@@ -28,7 +28,7 @@ public class ShellSort {
     public static void shellSort(int[] arr) {
         //外层为缩小增量
         for (int gap = arr.length/2; gap >= 1; gap /= 2) {
-            //外层为gap分组
+            //外层为gap分组，这里遍历应该是从下标第二个开始
             for (int i = gap; i < arr.length; i++) {
                 //分组内排序,采用插入排序
                 gapInsertSort(arr,i,gap);

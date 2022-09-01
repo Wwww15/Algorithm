@@ -72,7 +72,7 @@ public class BinaryTreeDemo {
         }
 
         //删除结点
-        binaryTree.delNode(1);
+        binaryTree.delNode2(3);
         //前序遍历一遍查看
         binaryTree.preOrder();
 
@@ -165,6 +165,25 @@ class  BinaryTree {
                 this.root = null;
             }else {
                 this.root.delNode(id);
+            }
+        }
+    }
+
+    /**
+     * 删除结点规则二
+     */
+    public void delNode2(int id) {
+        if(this.root != null) {
+            if(this.root.getId() == id) {
+                HeroNode right = this.root.getRight();
+                if(this.root.getLeft() != null) {
+                    this.root = this.root.getLeft();
+                    this.root.setRight(right);
+                }else {
+                    this.root = this.root.getRight();
+                }
+            }else {
+                this.root.delNode2(id);
             }
         }
     }
@@ -409,22 +428,34 @@ class HeroNode {
         if(this.left != null) {
             //找到就返回，并重置左结点
             if(this.left.id == id) {
-                this.left = null;
+                HeroNode right = this.left.getRight();
+                if(this.left.left != null) {
+                    this.left = this.left.left;
+                    this.left.setRight(right);
+                }else {
+                    this.left = this.left.right;
+                }
                 return;
             } else {
                 //没找到就继续递归
-                this.left.delNode(id);
+                this.left.delNode2(id);
             }
         }
         //判断当前右结点是否是删除结点
         if(this.right != null) {
             if(this.right.id == id) {
                 //找到就返回，并重置右结点
-                this.right = null;
+                HeroNode right = this.right.getRight();
+                if(this.right.left != null) {
+                    this.right = this.right.left;
+                    this.right.setRight(right);
+                }else {
+                    this.right = this.right.right;
+                }
                 return;
             }else {
                 //没找到就继续递归右结点
-                this.right.delNode(id);
+                this.right.delNode2(id);
             }
         }
 

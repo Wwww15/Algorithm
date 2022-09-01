@@ -8,7 +8,7 @@ import java.util.Comparator;
  * 1.特点：
  *  1) 路径：根节点到相应结点的通路，称为路径
  *  2) 路径长度：通路上的分支数目，称为路径长度如果层级为L，则路径长度为L-1
- *  3) 权值：结点一个有着某种含义的数值
+ *  3) 权值：结点赋予的一个有着某种含义的数值
  *  4）带权路径长度：该结点路径长度与权值的乘机
  *  5）树的带权路径长度：树的所有叶子结点的带权路径长度之和
  * 2.应用于哈夫曼编码，压缩信息
@@ -35,7 +35,7 @@ public class HuffmanTree {
     /**
      * 创建哈夫曼树
      * 1.将当前的数组排序（这里选择从小到大）
-     * 2.将排序后的数组遍历，从最小的开始取值，两个结点合并成一个结点（合并的权值为两个结点之和）
+     * 2.将排序后的数组遍历，从最小的开始取值，两个结点合并成一个结点（合并的结点权值为两个结点之和）
      * 3.分别生成左子节点和右子结点，然后将合并后的结点放入集合中
      * 4.重复1.2.3直到当前的集合中只有一个结点
      */
@@ -48,12 +48,7 @@ public class HuffmanTree {
         //循环遍历集合生成哈夫曼树
         while (list.size() != 1) {
             //首先对列表进行排序
-            list.sort(new Comparator<HuffmanTreeNode>() {
-                @Override
-                public int compare(HuffmanTreeNode o1, HuffmanTreeNode o2) {
-                    return o1.getWeight()-o2.getWeight();
-                }
-            });
+            list.sort((o1, o2) -> o1.getWeight()-o2.getWeight());
             //取出两个结点
             HuffmanTreeNode node1 = list.get(0);
             HuffmanTreeNode node2 = list.get(1);

@@ -12,9 +12,11 @@ package tree;
  */
 public class ArrBinaryTreeDemo {
     public static void main(String[] args) {
-        int arr[] = new int[]{1,2,3,4,5,6,7};
+//        int arr[] = new int[]{1,2,3,4,5,6,7};
+        int arr[] = {1, 3, 6, 8, 10, 14 };
         ArrBinaryTree arrBinaryTree = new ArrBinaryTree(arr);
-        arrBinaryTree.preOrder(0);
+//        arrBinaryTree.preOrder(0);
+        arrBinaryTree.infixOrder(0);
     }
 }
 
@@ -46,6 +48,26 @@ class  ArrBinaryTree {
         //右边再遍历
         if(2*index+2<arr.length) {
             preOrder(2*index+2);
+        }
+    }
+
+    /**
+     * 中序遍历
+     * @param index
+     */
+    public void infixOrder(int index) {
+        if(arr == null || arr.length == 0 ) {
+            return;
+        }
+        //先遍历左边
+        if(index*2+1<arr.length) {
+            infixOrder(index*2+1);
+        }
+        //输出父节点
+        System.out.println(arr[index]);
+        //再遍历右边
+        if(index*2+2<arr.length) {
+            infixOrder(index*2+2);
         }
     }
 }
