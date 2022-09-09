@@ -65,9 +65,9 @@ class Graph {
             int startIndex = -1;
             //记录当前轮的终点
             int endIndex = -1;
-            //遍历行
+            //遍历行，也可看成已被访问的起点
             for (int i = 0; i < matrix.length; i++) {
-                //遍历列
+                //遍历列，也可看成未被访问的终点
                 for (int j = 0; j < matrix[i].length; j++) {
                     //如果起点已经被访问，并且终点未被访问
                     if(visit[i] && !visit[j]) {

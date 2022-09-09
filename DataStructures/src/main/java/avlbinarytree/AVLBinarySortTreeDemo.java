@@ -326,7 +326,7 @@ class BinarySortTreeNode {
      * 2.相反的子结点就需要重新往上升，提为根结点
      */
     public void leftRotate() {
-        //新疆一个值为当前结点的新结点
+        //新建一个值为当前结点的新结点
         BinarySortTreeNode newNode = new BinarySortTreeNode(this.value);
         //新建结点的左子结点为当前的左子结点
         newNode.left = this.left;

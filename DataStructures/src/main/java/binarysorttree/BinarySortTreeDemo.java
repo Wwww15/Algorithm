@@ -15,8 +15,6 @@ public class BinarySortTreeDemo {
         for (int i = 0; i < arr.length; i++) {
             tree.addNode(new BinarySortTreeNode(arr[i]));
         }
-        //遍历打印查看
-//        tree.infixOrder();
         //查询结点
 //        BinarySortTreeNode binarySortTreeNode = tree.searchNode(7);
 //        System.out.println("查询到的结点："+binarySortTreeNode);
@@ -24,13 +22,13 @@ public class BinarySortTreeDemo {
 //        BinarySortTreeNode binarySortTreeParentNode = tree.searchParent(7);
 //        System.out.println("查询到的父结点："+binarySortTreeParentNode);
         //删除结点
-        tree.delNode(12);
-        tree.delNode(5);
-        tree.delNode(10);
-        tree.delNode(2);
-        tree.delNode(3);
-        tree.delNode(9);
-        tree.delNode(7);
+//        tree.delNode(12);
+//        tree.delNode(5);
+//        tree.delNode(10);
+//        tree.delNode(2);
+//        tree.delNode(3);
+//        tree.delNode(9);
+//        tree.delNode(7);
 
         //遍历打印查看
         tree.infixOrder();
@@ -239,7 +237,7 @@ class BinarySortTreeNode {
                 //递归往左子树上添加结点
                 this.left.addNode(node);
             }
-        } else { //插入右边
+        } else { //这里大于和等于当前结点的Node插入右边
             //当前右子结点是否为空
             if (this.right == null) {
                 this.right = node;

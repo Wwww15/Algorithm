@@ -43,10 +43,10 @@ public class GraphDemo {
         graph.showGraph();
 
         //深度优先遍历
-//        graph.deptFirstSearch();
+        graph.deptFirstSearch();
 
         //广度优先遍历
-        graph.broadFirstSearch();
+//        graph.broadFirstSearch();
     }
 
 }
@@ -130,6 +130,7 @@ class Graph {
     public void deptFirstSearch() {
         visit = new boolean[vertexCount()];
         //这里是否需要遍历，有待商榷 TODO
+        //如果这里都是有连接的顶点，这里不需要循环
 //        for (int i = 0; i < vertexCount(); i++) {
 //            if(!visit[i]) {
                 doDeptFirstSearch(0);

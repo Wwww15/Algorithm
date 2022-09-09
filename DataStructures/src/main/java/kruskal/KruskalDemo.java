@@ -51,9 +51,9 @@ public class KruskalDemo {
         //克鲁斯卡尔算法的真正开始，添加最小边以及回路的判断
         //最小生成树边的数量
         int minEdgeCount = vertex.length - 1;
-        //需要添加的边的返回数组
+        //需要添加的边的数组
         Edge[] minArr = new Edge[minEdgeCount];
-        //临时返回数组的下标
+        //添加的边的数组的下标
         int index = 0;
         //所有顶点的终点集合
         int[] endArr = new int[vertex.length];
@@ -72,7 +72,7 @@ public class KruskalDemo {
             if(startToEnd != endToEnd) {
                 //添加到返回的数组
                 minArr[index++] = edge;
-                //设置当前start顶点的终点为end，也就是当前的终点的终点为endToEnd
+                //设置当前start顶点的终点为end，也就是当前的终点的终点为endToEnd，这里设置的前置是，所有的顶点是按照某个特定顺序设定的
                 endArr[startToEnd] = endToEnd;
             }
         }
@@ -90,7 +90,7 @@ public class KruskalDemo {
         Edge[] edgeArr = new Edge[graph.getEdgeCount()];
         int[][] matrix = graph.getMatrix();
         for (int i = 0; i < matrix.length; i++) {
-            //这里 i+1 因为是无向图，只需要统计一个点到另一点的就行，并且顶点自身不需要加进边的数量里
+            //这里 i+1 因为是无向图，只需要统计一个点到另一点的就行，并且顶点自身不需要加进边的数量里，这里相当于遍历了邻接矩阵的一半
             for (int j = i+1; j < matrix[i].length; j++) {
                 //如果存在连接关系
                 if(matrix[i][j] != MAX) {
